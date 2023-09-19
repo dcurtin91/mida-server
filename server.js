@@ -3,25 +3,26 @@ import fetch from 'node-fetch';
 import cors from 'cors';
 
 const app = express();
-const port = 3000;
+const port = 4000;
 app.use(cors());
 
 app.get('/fetchData', async (req, res) => {
   try {
-    const response = await fetch('https://sheetdb.io/api/v1/cdjii4pfg6xp5');
+    const response = await fetch('https://sheetdb.io/api/v1/eiqpxcfg1r8i8');
     const data = await response.json();
 
-    // Extract only the "TTM REVENUE" and "ASKING PRICE" columns
+    
     const filteredData = data.map(row => ({
       'Title': row['Title'],
-      'TTM REVENUE': row['TTM REVENUE'],
-      'ASKING PRICE': row['ASKING PRICE'],
+      'TTM_REVENUE': row['TTM_REVENUE'],
+      'ASKING_PRICE': row['ASKING_PRICE'],
+      'ID': row['ID']
     }));
 
     const origin = 'http://localhost:5173';
     res.setHeader('Access-Control-Allow-Origin', origin);
 
-    // Send the filtered data as a JSON response
+    
     res.json(filteredData);
   } catch (error) {
     console.error('Error fetching data: ', error);
