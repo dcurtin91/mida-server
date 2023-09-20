@@ -14,8 +14,26 @@ app.get('/fetchData', async (req, res) => {
     
     const filteredData = data.map(row => ({
       'Title': row['Title'],
+      'Under_Offer': row['Under_Offer'],
       'TTM_REVENUE': row['TTM_REVENUE'],
+      'TTM_PROFIT': row['TTM_PROFIT'],
       'ASKING_PRICE': row['ASKING_PRICE'],
+      'Description': row['Description'],
+      'Date_Founded': row['Date_Founded'],
+      'Team_Size': row['Team_Size'],
+      'BUSINESS_MODEL': row['BUSINESS_MODEL'],
+      'Tech_Stack': row['Tech_Stack'],
+      'COMPETITORS': row['COMPETITORS'],
+      'GROWTH_OPPORTUNITY': row['GROWTH_OPPORTUNITY'],
+      'SELLING_REASONING': row['SELLING_REASONING'],
+      'Financing': row['Financing'],
+      'TTM_gross_revenue': row['TTM_gross_revenue'],
+      'TTM_net_profit': row['TTM_net_profit'],
+      'Last_months_gross_revenue': row['Last_months_gross_revenue'],
+      'Last_months_net_profit': row['Last_months_net_profit'],
+      'Customers': row['Customers'],
+      'Annual_recurring_revenue': row['Annual_recurring_revenue'],
+      'Annual_growth_rate': row['Annual_growth_rate'],
       'ID': row['ID']
     }));
 
