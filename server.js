@@ -1,17 +1,38 @@
 import express from 'express';
-import fetch from 'node-fetch';
 import cors from 'cors';
 
 const app = express();
 const port = 4000;
 app.use(cors());
 
+
+import { initializeApp } from "firebase/app";
+import {
+  getFirestore,
+  collection,
+  getDocs
+} from 'firebase/firestore';
+
+const firebaseConfig = {
+  apiKey: "AIzaSyAsKZyXuZZ2AP-DpmPYT8z7q5odDliOdEg",
+  authDomain: "mida-c36cb.firebaseapp.com",
+  projectId: "mida-c36cb",
+  storageBucket: "mida-c36cb.appspot.com",
+  messagingSenderId: "522567904542",
+  appId: "1:522567904542:web:f511ab34db094dd2686d0f"
+};
+
+
+const firebaseApp = initializeApp(firebaseConfig);
+const db = getFirestore(firebaseApp);
+
 app.get('/fetchData', async (req, res) => {
   try {
-    const response = await fetch('https://sheetdb.io/api/v1/eiqpxcfg1r8i8');
-    const data = await response.json();
+    const startupCollection = collection(db, 'startups'); 
 
-    
+    const snapshot = await getDocs(startupCollection);
+    const data = snapshot.docs.map(doc => doc.data());
+
     const filteredData = data.map(row => ({
       'Title': row['Title'],
       'Under_Offer': row['Under_Offer'],
